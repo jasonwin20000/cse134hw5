@@ -3,6 +3,7 @@ const form = document.getElementById("recordForm");
 const recordId = document.getElementById("record_id");
 const articleName = document.getElementById("article_name");
 const articleBody = document.getElementById("article_body");
+const recordDate = document.getElementById("date");
 
 const postBtn = document.getElementById("postBtn");
 const getBtn = document.getElementById("getBtn");
@@ -11,10 +12,10 @@ const deleteBtn = document.getElementById("deleteBtn");
 
 const responseOutput = document.getElementById("response");
 
+recordDate.value = new Date().toLocaleString();
 
 postBtn.addEventListener('click', () => {
     let formData = new FormData(form);
-    formData.append("date", new Date());
 
     fetch("https://httpbin.org/post", {
         method: 'POST',
@@ -28,7 +29,6 @@ postBtn.addEventListener('click', () => {
 
 getBtn.addEventListener('click', () => {
     let formData = new FormData(form);
-    formData.append("date", new Date());
     let url = new URL("https://httpbin.org/get");
     let searchParams = new URLSearchParams(formData);
     url.search = searchParams;
@@ -44,7 +44,6 @@ getBtn.addEventListener('click', () => {
 
 putBtn.addEventListener('click', () => {
     let formData = new FormData(form);
-    formData.append("date", new Date());
 
     fetch("https://httpbin.org/put", {
         method: 'PUT',
