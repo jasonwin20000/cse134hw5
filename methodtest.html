@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>CSE 134B Homework 5 Part 1</title>
+	<meta name="Author" content="Jason Win">
+</head>
+
+<body>
+    <form id="recordForm">
+        <label for="record_id">id: </label>
+        <input type="text" name="record_id" id="record_id">
+        <br>
+        <label for="article_name">Article Name: </label>
+        <input type="text" name="article_name" id="article_name">
+        <br>
+        <label for="article_body">Article Body: </label>
+        <textarea rows="10" cols="50" name="article_body" id="article_body"></textarea>        
+    </form>
+
+    <button type="button" id="postBtn">Post</button>
+    <button type="button" id="getBtn">Get</button>
+    <button type="button" id="putBtn">Put</button>
+    <button type="button" id="deleteBtn">Delete</button>
+
+    <br>
+
+    <output id="response"></output>
+
+    <script src="methodtest.js"></script>
+</body>
+
+</html>
