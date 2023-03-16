@@ -1,9 +1,8 @@
 const form = document.getElementById("recordForm");
-
+/* 
 const recordId = document.getElementById("record_id");
 const articleName = document.getElementById("article_name");
-const articleBody = document.getElementById("article_body");
-const recordDate = document.getElementById("date");
+const articleBody = document.getElementById("article_body"); */
 
 const postBtn = document.getElementById("postBtn");
 const getBtn = document.getElementById("getBtn");
@@ -12,6 +11,7 @@ const deleteBtn = document.getElementById("deleteBtn");
 
 const responseOutput = document.getElementById("response");
 
+const recordDate = document.getElementById("date"); 
 recordDate.value = new Date().toLocaleString();
 
 postBtn.addEventListener('click', () => {
@@ -19,13 +19,13 @@ postBtn.addEventListener('click', () => {
 
     fetch("https://httpbin.org/post", {
         method: 'POST',
-        body: formData
+        body: formData,
     })
     .then(response => response.json())
     .then(data => {
-        responseOutput.innerHTML = JSON.stringify(data);
-    })
-})
+        responseOutput.innerHTML = formatData(data);
+    });
+});
 
 getBtn.addEventListener('click', () => {
     let formData = new FormData(form);
@@ -38,9 +38,9 @@ getBtn.addEventListener('click', () => {
     })
     .then(response => response.json())
     .then(data => {
-        responseOutput.innerHTML = JSON.stringify(data);
-    })
-})
+        responseOutput.innerHTML = formatData(data);
+    });
+});
 
 putBtn.addEventListener('click', () => {
     let formData = new FormData(form);
@@ -51,9 +51,9 @@ putBtn.addEventListener('click', () => {
     })
     .then(response => response.json())
     .then(data => {
-        responseOutput.innerHTML = JSON.stringify(data);
-    })
-})
+        responseOutput.innerHTML = formatData(data);
+    });
+});
 
 deleteBtn.addEventListener('click', () => {
     let formData = new FormData(form);
@@ -66,6 +66,23 @@ deleteBtn.addEventListener('click', () => {
     })
     .then(response => response.json())
     .then(data => {
-        responseOutput.innerHTML = JSON.stringify(data);
-    })
-})
+        responseOutput.innerHTML = formatData(data);
+    });
+});
+
+function formatData(data) {
+    let html = "<table>";
+        for (let x in data) {
+        html += `<tr><th>${x}</th></tr>`;
+        if (typeof data[x] === "object") {
+            for (let y in data[x]) {
+                html += `<tr><td>${y}</td><td>${data[x][y]}</td></tr>`;
+            }
+        } 
+        else {
+            html += `<tr><td>${x}</td><td>${data[x]}</td></tr>`;
+        }
+    }
+    html += "</table>";
+    return html;
+}
