@@ -1,8 +1,4 @@
 const form = document.getElementById("recordForm");
-/* 
-const recordId = document.getElementById("record_id");
-const articleName = document.getElementById("article_name");
-const articleBody = document.getElementById("article_body"); */
 
 const postBtn = document.getElementById("postBtn");
 const getBtn = document.getElementById("getBtn");
